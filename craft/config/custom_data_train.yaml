@@ -3,7 +3,7 @@ wandb_opt: False
 results_dir: "./exp/"
 vis_test_dir: "./vis_result/"
 
-data_root_dir: "./data_root_dir/"
+data_root_dir: "/kaggle/input/bkai-ocr/BKAI-data"
 score_gt_dir: None # "/data/ICDAR2015_official_supervision"
 mode: "weak_supervision"
 

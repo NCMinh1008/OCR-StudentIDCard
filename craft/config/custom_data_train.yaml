@@ -14,7 +14,7 @@ train:
   synth_data_dir: "/data/SynthText/"
   synth_ratio: 5
   real_dataset: custom
-  ckpt_path: "/kaggle/input/ckpt/CRAFT_clr_amp_29500.pth"
+  ckpt_path: "/kaggle/input/proj-ai-ocr-ckpt/CRAFT_clr_amp_29500.pth"
   eval_interval: 1
   batch_size: 2
   st_iter: 0

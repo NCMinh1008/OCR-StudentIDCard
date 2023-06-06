@@ -16,14 +16,14 @@ train:
   real_dataset: custom
   ckpt_path: "/kaggle/input/proj-ai-ocr-ckpt/CRAFT_clr_amp_29500.pth"
   eval_interval: 10
-  batch_size: 8
+  batch_size: 6
   st_iter: 0
   end_iter: 1000
   lr: 0.0001
   lr_decay: 7500
   gamma: 0.2
   weight_decay: 0.00001
-  num_workers: 4 # On single gpu, train.py execution only works when num worker = 0 / On multi-gpu, you can set num_worker > 0 to speed up
+  num_workers: 0 # On single gpu, train.py execution only works when num worker = 0 / On multi-gpu, you can set num_worker > 0 to speed up
   amp: True
   loss: 2
   neg_rto: 0.3
@@ -89,7 +89,7 @@ test:
   trained_model : null
   custom_data:
     test_set_size: 500
-    test_data_dir: "./data_root_dir/"
+    test_data_dir: "/kaggle/input/bkai-ocr/BKAI-data"
     text_threshold: 0.75
     low_text: 0.5
     link_threshold: 0.2

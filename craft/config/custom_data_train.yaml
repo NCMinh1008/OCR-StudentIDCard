@@ -3,7 +3,7 @@ wandb_opt: False
 results_dir: "./exp/"
 vis_test_dir: "./vis_result/"
 
-data_root_dir: "/kaggle/input/student-card"
+data_root_dir: "/kaggle/input/student-card/data_root_dir"
 score_gt_dir: None # "/data/ICDAR2015_official_supervision"
 mode: "weak_supervision"
 
@@ -89,7 +89,7 @@ test:
   trained_model : null
   custom_data:
     test_set_size: 500
-    test_data_dir: "/kaggle/input/student-card"
+    test_data_dir: "/kaggle/input/student-card/data_root_dir"
     text_threshold: 0.75
     low_text: 0.5
     link_threshold: 0.2

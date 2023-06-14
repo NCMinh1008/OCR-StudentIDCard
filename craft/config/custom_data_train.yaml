@@ -3,7 +3,7 @@ wandb_opt: False
 results_dir: "./exp/"
 vis_test_dir: "./vis_result/"
 
-data_root_dir: "/kaggle/input/bkai-ocr/BKAI-data"
+data_root_dir: "/kaggle/input/student-card"
 score_gt_dir: None # "/data/ICDAR2015_official_supervision"
 mode: "weak_supervision"
 
@@ -15,8 +15,8 @@ train:
   synth_ratio: 5
   real_dataset: custom
   ckpt_path: "/kaggle/input/proj-ai-ocr-ckpt/CRAFT_clr_amp_29500.pth"
-  eval_interval: 10
-  batch_size: 6
+  eval_interval: 200
+  batch_size: 5
   st_iter: 0
   end_iter: 1000
   lr: 0.0001
@@ -89,7 +89,7 @@ test:
   trained_model : null
   custom_data:
     test_set_size: 500
-    test_data_dir: "/kaggle/input/bkai-ocr/BKAI-data"
+    test_data_dir: "/kaggle/input/student-card"
     text_threshold: 0.75
     low_text: 0.5
     link_threshold: 0.2

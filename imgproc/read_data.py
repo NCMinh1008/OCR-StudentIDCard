@@ -5,12 +5,12 @@ import os
 
  
 
-with open('data/kili-label-export-OCR-data-2023-06-13_18-17.json') as f:
+with open('data_root_dir/kili-label-export-OCR-data-2023-06-13_18-17.json') as f:
     data = json.load(f)
 
 
-IMAGE_DIR = "data/training_images" 
-GT_DIR = "data/training_gts"      
+IMAGE_DIR = "data_root_dir/ch4_training_images" 
+GT_DIR = "data_root_dir/ch4_training_localization_transcription_gt"      
 gt = []
 
 for idx in range(len(data)):
@@ -74,7 +74,7 @@ for idx in range(len(data)):
 
 
 for i in range(len(gt)):
-    filename = gt[i][0].split(".")[0] + ".txt"
+    filename = "gt_" + gt[i][0].split(".")[0] + ".txt"
     with open(os.path.join(GT_DIR, filename), "a") as f:
         for j in range(1,6):
             for m in range(len(gt[i][j])-1):

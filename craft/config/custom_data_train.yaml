@@ -86,7 +86,7 @@ train:
         option: True
 
 test:
-  trained_model : null
+  trained_model : "/kaggle/input/proj-ai-ocr-ckpt/CRAFT_clr_amp_29500.pth"
   custom_data:
     test_set_size: 500
     test_data_dir: "/kaggle/input/student-card/data_root_dir"

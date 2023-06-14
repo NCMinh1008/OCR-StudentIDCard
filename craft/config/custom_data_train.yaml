@@ -15,10 +15,10 @@ train:
   synth_ratio: 5
   real_dataset: custom
   ckpt_path: "/kaggle/input/proj-ai-ocr-ckpt/CRAFT_clr_amp_29500.pth"
-  eval_interval: 200
-  batch_size: 5
+  eval_interval: 1000
+  batch_size: 8
   st_iter: 0
-  end_iter: 1000
+  end_iter: 10000
   lr: 0.0001
   lr_decay: 7500
   gamma: 0.2

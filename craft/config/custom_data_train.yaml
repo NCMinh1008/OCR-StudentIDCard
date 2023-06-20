@@ -89,7 +89,7 @@ test:
   trained_model : "/kaggle/input/proj-ai-ocr-ckpt/ckpt/ckpt/CRAFT_clr_amp_10000.pth"
   custom_data:
     test_set_size: 500
-    test_data_dir: "/kaggle/input/student-card/data_root_dir"
+    test_data_dir: "/kaggle/working/OCR-StudentIDcard/ouput"
     text_threshold: 0.75
     low_text: 0.5
     link_threshold: 0.2
@@ -97,4 +97,4 @@ test:
     mag_ratio: 1.75
     poly: False
     cuda: True
-    vis_opt: False
+    vis_opt: True

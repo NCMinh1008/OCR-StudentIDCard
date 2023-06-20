@@ -312,7 +312,7 @@ def main_eval(model_path, backbone, config, evaluator, result_dir, buffer, model
                 gt_box=total_imgs_bboxes_gt[k],
                 img_name=img_path,
                 result_dir=result_dir,
-                test_folder_name="custom_data",
+                test_folder_name="./output_custom_data",
             )
 
     # When distributed evaluation mode, wait until buffer is full filled

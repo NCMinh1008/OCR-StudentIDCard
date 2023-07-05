@@ -197,7 +197,8 @@ def main_eval(img_path, model_path, backbone, config, evaluator, result_dir, buf
 def cal_eval(img_path, config, data, res_dir_name, opt, mode):
     evaluator = DetectionIoUEvaluator()
     test_config = DotDict(config.test[data])
-    res_dir = os.path.join(os.path.join("exp", args.yaml), "{}".format(res_dir_name))
+    res_dir = os.path.join(os.path.join("exp", "custom_data_train"), "{}".format(res_dir_name))
+    # res_dir = os.path.join(os.path.join("exp", args.yaml), "{}".format(res_dir_name))
 
     if opt == "iou_eval":
         total_imgs_bboxes_pre = main_eval(

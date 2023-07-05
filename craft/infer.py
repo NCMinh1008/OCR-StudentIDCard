@@ -247,7 +247,7 @@ if __name__ == "__main__":
         wandb.config.update(config)
 
     val_result_dir_name = args.yaml
-    cal_eval(
+    total_imgs_bboxes_pre = cal_eval(
         img_path,
         config,
         "custom_data",

@@ -54,7 +54,7 @@ def inference(img_path, lang):
     )
 
     bounds = []
-    for idx in len(total_imgs_bboxes_pre[0][0]):
+    for idx in range(len(total_imgs_bboxes_pre[0][0])):
         bound = total_imgs_bboxes_pre[0][0][idx]["point"].tolist()
         bounds.append(bound)
 

@@ -47,9 +47,10 @@ def inference(img_path, lang):
 
     bounds = []
     for idx in range(len(total_imgs_bboxes_pre[0][0])):
-        print(total_imgs_bboxes_pre[0][idx]["points"])
         bound = total_imgs_bboxes_pre[0][idx]["points"].tolist()
         bounds.append(bound)
+        print(bound)
+    
 
     # ============================
     reader = easyocr.Reader(lang)

@@ -27,21 +27,13 @@ def inference(img_path, lang):
         type=str,
         help="Load configuration",
     )
-    parser.add_argument(
-        "--img_path",
-        "--img_path",
-        default="custom_data_train.png",
-        type=str,
-        help="Load configuration",
-    )
+
     args = parser.parse_args()
 
     # load configure
     config = load_yaml(args.yaml)
     config = DotDict(config)
 
-    # load image path
-    img_path = args.img_path
 
     val_result_dir_name = args.yaml
     total_imgs_bboxes_pre = cal_eval(
@@ -61,8 +53,8 @@ def inference(img_path, lang):
 
     # ============================
     reader = easyocr.Reader(lang)
-    bounds = reader.readtext(img_path)
-    print(bounds)
+    # bounds = reader.readtext(img_path)
+    # print(bounds)
     im = PIL.Image.open(img_path)
     draw_boxes(im, bounds)
     im.save('result.jpg')

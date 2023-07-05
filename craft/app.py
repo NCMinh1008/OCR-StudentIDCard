@@ -10,6 +10,18 @@ import argparse
 from infer import cal_eval
 from config.load_config import load_yaml, DotDict
 
+
+import pytesseract
+import shutil
+import os
+import random
+import cv2
+import matplotlib.pyplot as plt
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+
 def draw_boxes(image, bounds, color='yellow', width=2):
     draw = ImageDraw.Draw(image)
     for bound in bounds:
@@ -20,7 +32,10 @@ def draw_boxes(image, bounds, color='yellow', width=2):
     return image
 
 def inference(img_path, lang):
-    # ============================
+    #load image
+    img = PIL.Image.open(img_path)
+
+    # ============================ Scene Text Detection ============================
     parser = argparse.ArgumentParser(description="CRAFT Text Detection Eval")
     parser.add_argument(
         "--yaml",
@@ -52,15 +67,33 @@ def inference(img_path, lang):
         bound = total_imgs_bboxes_pre[0][idx]["points"].tolist()
         bounds.append(bound)
         print(bound)
-    
 
-    # ============================
+    # ============================ Text Recognition ============================
+    for bound in bounds:
+        p0, p1, p2, p3 = bound
+        x1, y1 = p0
+        x2, y2 = p1
+        x3, y3 = p2
+        x4, y4 = p3
+
+        top_left_x = min([x1,x2,x3,x4])
+        top_left_y = min([y1,y2,y3,y4])
+        bot_right_x = max([x1,x2,x3,x4])
+        bot_right_y = max([y1,y2,y3,y4])
+
+        cropped_img = img.crop((top_left_x, top_left_y, bot_right_x, bot_right_y))
+        extractedInformation = pytesseract.image_to_string(cropped_img)
+        print(extractedInformation)
+        # cropped_img = img[top_left_y:bot_right_y+1, top_left_x:bot_right_x+1]
+
+
+    # ====================================================================================
+
     # reader = easyocr.Reader(lang)
     # bounds = reader.readtext(img_path)
     # print(bounds)
-    im = PIL.Image.open(img_path)
-    draw_boxes(im, bounds)
-    im.save('result.jpg')
+    draw_boxes(img, bounds)
+    img.save('result.jpg')
     return ['result.jpg', pd.DataFrame(bounds).iloc[: , 1:]]   
 
 title = 'STUDENT ID INFORMATION EXTRACTION'

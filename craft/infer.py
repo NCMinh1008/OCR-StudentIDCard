@@ -200,7 +200,7 @@ def cal_eval(img_path, config, data, res_dir_name, opt, mode):
     res_dir = os.path.join(os.path.join("exp", args.yaml), "{}".format(res_dir_name))
 
     if opt == "iou_eval":
-        main_eval(
+        total_imgs_bboxes_pre = main_eval(
             img_path,
             config.test.trained_model,
             config.train.backbone,
@@ -213,6 +213,7 @@ def cal_eval(img_path, config, data, res_dir_name, opt, mode):
         )
     else:
         print("Undefined evaluation")
+    return total_imgs_bboxes_pre
 
 
 if __name__ == "__main__":

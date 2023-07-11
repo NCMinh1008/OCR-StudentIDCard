@@ -95,11 +95,8 @@ def inference(img_path, lang):
     # print(bounds)
     draw_boxes(img, bounds)
     img.save('result.jpg')
-    
-    # extracted_info_string = ''.join(extracted_info)
-    
-    return ['result.jpg', pd.DataFrame(extracted_info).iloc[: , 1:]]
-    # return ['result.jpg', extracted_info_string]
+    # return ['result.jpg', pd.DataFrame(extracted_info).iloc[: , 1:]]
+    return ['result.jpg', pd.DataFrame(extracted_info)]
 
 title = 'STUDENT ID INFORMATION EXTRACTION'
 description = '<div style="text-align: center;"><h3>Demo for Student ID information extraction</h3><p>To use it, simply upload your image and choose a language from the dropdown menu.</p></div>'
@@ -112,7 +109,6 @@ choices = [
 gr.Interface(
     inference,
     [gr.inputs.Image(type='filepath',label='Input'),gr.inputs.CheckboxGroup(choices, type="value", default=['vi'], label='Language')],
-    # [gr.outputs.Image(type='filepath', label='Output'), gr.outputs.Label(label='Extracted Information')],
     [gr.outputs.Image(type='filepath',label='Output'), gr.outputs.Dataframe(type='array', headers=['Extracted Information'], label='Output')],
     title=title,
     description=description,

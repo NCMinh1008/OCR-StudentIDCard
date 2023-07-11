@@ -83,6 +83,7 @@ def inference(img_path, lang):
 
         cropped_img = img.crop((top_left_x, top_left_y, bot_right_x, bot_right_y))
         extractedInformation = pytesseract.image_to_string(cropped_img)
+        extracted_information = extracted_information.strip()  # Remove newline characters
         print(extractedInformation)        
         extracted_info.append(extractedInformation)
         
@@ -96,8 +97,11 @@ def inference(img_path, lang):
     draw_boxes(img, bounds)
     img.save('result.jpg')
     # return ['result.jpg', pd.DataFrame(extracted_info).iloc[: , 1:]]
-    return ['result.jpg', pd.DataFrame(extracted_info, columns=['Extracted Information'], index = False)]
+    df = pd.DataFrame(extracted_info, columns=['Extracted Information'])
+    df = df.rename_axis(None, axis=1)
 
+    return ['result.jpg', df]
+            
 title = 'STUDENT ID INFORMATION EXTRACTION'
 description = '<div style="text-align: center;"><h3>Demo for Student ID information extraction</h3><p>To use it, simply upload your image and choose a language from the dropdown menu.</p></div>'
 choices = [

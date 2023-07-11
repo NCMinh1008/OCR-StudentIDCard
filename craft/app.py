@@ -10,7 +10,6 @@ import argparse
 from infer import cal_eval
 from config.load_config import load_yaml, DotDict
 
-
 import pytesseract
 import shutil
 import os
@@ -20,7 +19,7 @@ import matplotlib.pyplot as plt
 try:
     from PIL import Image
 except ImportError:
-    import Image
+    from PIL import Image 
 
 def draw_boxes(image, bounds, color='yellow', width=2):
     draw = ImageDraw.Draw(image)
@@ -51,7 +50,6 @@ def inference(img_path, lang):
     config = load_yaml(args.yaml)
     config = DotDict(config)
 
-
     val_result_dir_name = args.yaml
     total_imgs_bboxes_pre = cal_eval(
         img_path,
@@ -63,6 +61,8 @@ def inference(img_path, lang):
     )
 
     bounds = []
+    extracted_info = []
+    
     for idx in range(len(total_imgs_bboxes_pre[0])):
         bound = total_imgs_bboxes_pre[0][idx]["points"].tolist()
         bounds.append(bound)
@@ -83,9 +83,10 @@ def inference(img_path, lang):
 
         cropped_img = img.crop((top_left_x, top_left_y, bot_right_x, bot_right_y))
         extractedInformation = pytesseract.image_to_string(cropped_img)
-        print(extractedInformation)
+        print(extractedInformation)        
+        extracted_info.append(extractedInformation)
+        
         # cropped_img = img[top_left_y:bot_right_y+1, top_left_x:bot_right_x+1]
-
 
     # ====================================================================================
 
@@ -94,7 +95,9 @@ def inference(img_path, lang):
     # print(bounds)
     draw_boxes(img, bounds)
     img.save('result.jpg')
-    return ['result.jpg', pd.DataFrame(bounds).iloc[: , 1:]]   
+    
+    # return ['result.jpg', pd.DataFrame(bounds).iloc[: , 1:]]
+    return ['result.jpg', extracted_info]
 
 title = 'STUDENT ID INFORMATION EXTRACTION'
 description = '<div style="text-align: center;"><h3>Demo for Student ID information extraction</h3><p>To use it, simply upload your image and choose a language from the dropdown menu.</p></div>'

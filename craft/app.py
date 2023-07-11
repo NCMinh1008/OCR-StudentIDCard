@@ -112,7 +112,8 @@ choices = [
 gr.Interface(
     inference,
     [gr.inputs.Image(type='filepath',label='Input'),gr.inputs.CheckboxGroup(choices, type="value", default=['vi'], label='Language')],
-    [gr.outputs.Image(type='filepath',label='Output'), gr.outputs.Dataframe(type='array', headers=['Text'], label='Output')],
+    [gr.outputs.Image(type='filepath', label='Output'), gr.outputs.Text(label='Extracted Information')]
+    # [gr.outputs.Image(type='filepath',label='Output'), gr.outputs.Dataframe(type='array', headers=['Text'], label='Output')],
     title=title,
     description=description,
     allow_flagging="manual",

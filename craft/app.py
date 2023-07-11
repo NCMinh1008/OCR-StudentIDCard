@@ -96,7 +96,7 @@ def inference(img_path, lang):
     draw_boxes(img, bounds)
     img.save('result.jpg')
     # return ['result.jpg', pd.DataFrame(extracted_info).iloc[: , 1:]]
-    return ['result.jpg', pd.DataFrame(extracted_info)]
+    return ['result.jpg', pd.DataFrame(extracted_info, columns=['Extracted Information'], index = False)]
 
 title = 'STUDENT ID INFORMATION EXTRACTION'
 description = '<div style="text-align: center;"><h3>Demo for Student ID information extraction</h3><p>To use it, simply upload your image and choose a language from the dropdown menu.</p></div>'

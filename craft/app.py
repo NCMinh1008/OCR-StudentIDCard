@@ -83,7 +83,7 @@ def inference(img_path, lang):
 
         cropped_img = img.crop((top_left_x, top_left_y, bot_right_x, bot_right_y))
         extractedInformation = pytesseract.image_to_string(cropped_img)
-        extracted_information = extracted_information.strip()  # Remove newline characters
+        extractedInformation = extractedInformation.strip()  # Remove newline characters
         print(extractedInformation)        
         extracted_info.append(extractedInformation)
         

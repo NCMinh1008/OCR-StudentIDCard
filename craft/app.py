@@ -96,7 +96,7 @@ def inference(img_path, lang):
     draw_boxes(img, bounds)
     img.save('result.jpg')
     
-    extracted_info_string = '\n'.join(extracted_info)
+    extracted_info_string = ''.join(extracted_info)
     
     # return ['result.jpg', pd.DataFrame(bounds).iloc[: , 1:]]
     return ['result.jpg', extracted_info_string]

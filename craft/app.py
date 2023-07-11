@@ -96,6 +96,8 @@ def inference(img_path, lang):
     draw_boxes(img, bounds)
     img.save('result.jpg')
     
+    extracted_info_string = '\n'.join(extracted_info)
+    
     # return ['result.jpg', pd.DataFrame(bounds).iloc[: , 1:]]
     return ['result.jpg', extracted_info]
 
@@ -110,7 +112,7 @@ choices = [
 gr.Interface(
     inference,
     [gr.inputs.Image(type='filepath',label='Input'),gr.inputs.CheckboxGroup(choices, type="value", default=['vi'], label='Language')],
-    [gr.outputs.Image(type='filepath',label='Output'), gr.outputs.Dataframe(type='array', headers=['Text', 'Confidence'], label='Output')],
+    [gr.outputs.Image(type='filepath',label='Output'), gr.outputs.Dataframe(type='array', headers=['Text'], label='Output')],
     title=title,
     description=description,
     allow_flagging="manual",

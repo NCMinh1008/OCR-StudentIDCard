@@ -4,7 +4,7 @@ import json
 import os
 
 conn = mysql.connector.connect(
-    host='localhost',
+    host='127.0.0.1',
     port='3306',
     user='root',
     password='N@mtr4n123',
@@ -14,7 +14,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 
 # Directory containing the JSON files
-json_files_dir = 'C:/Users/tdnam/Downloads/OCR/Results/Output'
+json_files_dir = '/kaggle/working/OCR-StudentIDcard/craft/Results/Output'
 
 # Iterate over the JSON files
 for filename in os.listdir(json_files_dir):

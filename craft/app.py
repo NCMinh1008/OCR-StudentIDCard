@@ -66,7 +66,6 @@ def inference(img_path, lang):
     for idx in range(len(total_imgs_bboxes_pre[0])):
         bound = total_imgs_bboxes_pre[0][idx]["points"].tolist()
         bounds.append(bound)
-        print(bound)
 
     # ============================ Text Recognition ============================
     for bound in bounds:
@@ -81,13 +80,16 @@ def inference(img_path, lang):
         bot_right_x = max([x1,x2,x3,x4])
         bot_right_y = max([y1,y2,y3,y4])
 
+        lang = 'vie' 
+        config = r'--oem 3 --psm 6'
+
         cropped_img = img.crop((top_left_x, top_left_y, bot_right_x, bot_right_y))
-        extractedInformation = pytesseract.image_to_string(cropped_img)
+        extractedInformation = pytesseract.image_to_string(cropped_img, lang=lang, config=config)
+
         extractedInformation = extractedInformation.strip()  # Remove newline characters
         print(extractedInformation)        
         extracted_info.append(extractedInformation)
         
-        # cropped_img = img[top_left_y:bot_right_y+1, top_left_x:bot_right_x+1]
 
     # ====================================================================================
 

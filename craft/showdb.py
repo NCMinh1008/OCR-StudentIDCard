@@ -1,4 +1,5 @@
 import gradio as gr
+import pandas as pd
 import mysql.connector
 
 # Connect to the database
@@ -9,7 +10,6 @@ conn = mysql.connector.connect(
     password="N@mtr4n123",
     database="ocr"
 )
-
 cursor = conn.cursor()
 
 def fetch_data():
@@ -17,29 +17,10 @@ def fetch_data():
     data = cursor.fetchall()
     return data
 
-iface = gr.Interface(
-    fn=fetch_data,
+gr.Interface(
+    fetch_data,
     inputs=None,
-    outputs="table"
-)
-
-# # Define a database query function
-# def query_database(name):
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT * FROM extracted_data WHERE name = %s", (name,))
-#     result = cursor.fetchone()
-#     cursor.close()
-#     return result
-
-# # Define the Gradio app
-# iface = gr.Interface(
-#     fn=query_database,
-#     inputs="text",
-#     outputs="text",
-#     title="Database Query",
-#     description="Enter a name to query the database.",
-#     examples=[["John"], ["Jane"]],
-# )
-
-# Run the Gradio app
-iface.launch()
+    outputs=gr.outputs.Dataframe(type='array', headers=['No.', 'Name', 'Date of Birth', 'Major', 'Student ID']),
+    title="EXTRACTED INFORMATION",
+    description='<div style="text-align: center;"><h3>Press Generate button to display all the extracted information</h3></div>'
+    ).launch(debug=True)
